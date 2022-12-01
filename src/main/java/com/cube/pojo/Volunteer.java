@@ -5,8 +5,19 @@ public class Volunteer {
     private String name;
     private String account;
     private String password;
-    private String Serve;
+    private String server;
     private Project project;
+
+    public Volunteer() {
+    }
+
+    public Volunteer(String name, String account, String password, String server) {
+        this.name = name;
+        this.account = account;
+        this.password = password;
+        server = server;
+    }
+
     public int getId() {
         return id;
     }
@@ -47,11 +58,23 @@ public class Volunteer {
         this.project = project;
     }
 
-    public String getServe() {
-        return Serve;
+    public String getServer() {
+        return server;
     }
 
-    public void setServe(String serve) {
-        Serve = serve;
+    public void setServer(String serve) {
+        this.server = serve;
+    }
+
+    @Override
+    public String toString() {
+        return "Volunteer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", Serve='" + server + '\'' +
+                ", project=" + project +
+                '}';
     }
 }
