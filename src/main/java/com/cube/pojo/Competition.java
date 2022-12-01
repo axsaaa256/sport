@@ -1,6 +1,4 @@
-package com.cube.Pojo;
-
-import java.util.List;
+package com.cube.pojo;
 
 public class Competition {
     private Athlete athlete;

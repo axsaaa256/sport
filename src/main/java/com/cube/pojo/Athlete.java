@@ -1,4 +1,4 @@
-package com.cube.Pojo;
+package com.cube.pojo;
 
 import java.util.List;
 

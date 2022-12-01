@@ -1,11 +1,10 @@
-package com.cube.Pojo;
+package com.cube.pojo;
 
 public class Refee {
     private int id;
     private String name;
     private String account;
     private String password;
-
     private Project project;
     public int getId() {
         return id;

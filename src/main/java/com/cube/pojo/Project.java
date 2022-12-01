@@ -1,8 +1,7 @@
-package com.cube.Pojo;
+package com.cube.pojo;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
 
 public class Project {
     private String name;

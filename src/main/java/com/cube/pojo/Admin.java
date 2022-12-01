@@ -1,12 +1,11 @@
-package com.cube.Pojo;
+package com.cube.pojo;
 
-public class Volunteer {
+public class Admin {
     private int id;
     private String name;
     private String account;
     private String password;
-    private String Serve;
-    private Project project;
+
     public int getId() {
         return id;
     }
@@ -37,21 +36,5 @@ public class Volunteer {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
-    public String getServe() {
-        return Serve;
-    }
-
-    public void setServe(String serve) {
-        Serve = serve;
     }
 }
