@@ -6,6 +6,7 @@ public class Refee {
     private String account;
     private String password;
 
+    private Project project;
     public int getId() {
         return id;
     }
@@ -36,5 +37,13 @@ public class Refee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

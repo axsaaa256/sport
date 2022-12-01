@@ -1,11 +1,13 @@
 package com.cube.Pojo;
 
+import java.util.List;
+
 public class Athlete {
     private int id;
     private String name;
     private String account;
     private String password;
-
+    private List<Competition> competitions;
     public int getId() {
         return id;
     }
@@ -36,5 +38,13 @@ public class Athlete {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Competition> getCompetitions() {
+        return competitions;
+    }
+
+    public void setCompetitions(List<Competition> competitions) {
+        this.competitions = competitions;
     }
 }
