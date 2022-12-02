@@ -1,5 +1,7 @@
 package com.cube.dao;
 
+import com.cube.pojo.Project;
+import com.cube.pojo.Referee;
 import com.cube.pojo.Volunteer;
 import com.cube.util.DBUtil;
 
@@ -88,6 +90,9 @@ public class VolunteerDao {
                 bean.setServer(server);
                 bean.setId(id);
                 beans.add(bean);
+                int pid=rs.getInt("project_id");
+                Project project = new ProjectDao().get(pid);
+                bean.setProject(project);
             }
         } catch (SQLException e) {
 
@@ -115,6 +120,9 @@ public class VolunteerDao {
                 String server=rs.getString("server");
                 bean.setServer(server);
                 bean.setId(id);
+                int pid=rs.getInt("project_id");
+                Project project = new ProjectDao().get(pid);
+                bean.setProject(project);
             }
 
         } catch (SQLException e) {
@@ -141,6 +149,9 @@ public class VolunteerDao {
                 String server=rs.getString("server");
                 bean.setServer(server);
                 bean.setId(id);
+                int pid=rs.getInt("project_id");
+                Project project = new ProjectDao().get(pid);
+                bean.setProject(project);
             }
 
         } catch (SQLException e) {
@@ -148,5 +159,21 @@ public class VolunteerDao {
             e.printStackTrace();
         }
         return bean;
+    }
+    public void update(Volunteer bean, Project project) {
+
+        String sql = "update volunteer set project_id=? where id = ? ";
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+
+            ps.setInt(1,project.getId());
+            ps.setInt(2, bean.getId());
+
+            ps.execute();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
     }
 }

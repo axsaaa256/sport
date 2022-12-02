@@ -1,16 +1,16 @@
 package com.cube.pojo;
 
-public class Refee {
+public class Referee {
     private int id;
     private String name;
     private String account;
     private String password;
     private Project project;
 
-    public Refee() {
+    public Referee() {
     }
 
-    public Refee(String name, String account, String password) {
+    public Referee(String name, String account, String password) {
         this.name = name;
         this.account = account;
         this.password = password;

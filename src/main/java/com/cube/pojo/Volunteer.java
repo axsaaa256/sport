@@ -11,6 +11,12 @@ public class Volunteer {
     public Volunteer() {
     }
 
+    public Volunteer(String name, String account, String password) {
+        this.name = name;
+        this.account = account;
+        this.password = password;
+    }
+
     public Volunteer(String name, String account, String password, String server) {
         this.name = name;
         this.account = account;
