@@ -25,6 +25,21 @@ public class RefereeDao {
             e.printStackTrace();
         }
     }
+    public void add(Referee bean,Project project) {
+
+        String sql = "insert into referee values(null,? ,? ,?,?)";
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setString(2,bean.getAccount());
+            ps.setString(1, bean.getName());
+            ps.setString(3, bean.getPassword());
+            ps.setInt(4,project.getId());
+            ps.execute();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
 
     public void update(Referee bean) {
 

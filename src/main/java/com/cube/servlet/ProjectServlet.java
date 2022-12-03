@@ -39,6 +39,8 @@ public class ProjectServlet extends HttpServlet {
             String method=req.getParameter("method");
             if(method.equals("manage"))
             {
+                String id=req.getParameter("id");
+                int pid=Integer.valueOf(id);
                 Project project = new ProjectDao().get(pid);
                 req.setAttribute("item",project);
                 req.getRequestDispatcher("projectManage.jsp").forward(req,resp);

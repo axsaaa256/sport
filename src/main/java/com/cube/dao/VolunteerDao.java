@@ -25,6 +25,22 @@ public class VolunteerDao {
             e.printStackTrace();
         }
     }
+    public void add(Volunteer bean,Project project) {
+
+        String sql = "insert into volunteer values(null,? ,? ,?,?,?)";
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setString(2,bean.getAccount());
+            ps.setString(1, bean.getName());
+            ps.setString(3, bean.getPassword());
+            ps.setString(4,bean.getServer());
+            ps.setInt(5,project.getId());
+            ps.execute();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
 
     public void update(Volunteer bean) {
 

@@ -27,4 +27,20 @@
         <servlet-name>projectServlet</servlet-name>
         <servlet-class>com.cube.servlet.ProjectServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>athleteServlet</servlet-name>
+        <url-pattern>/athleteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>athleteServlet</servlet-name>
+        <servlet-class>com.cube.servlet.AthleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>competitionServlet</servlet-name>
+        <url-pattern>/competitionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>competitionServlet</servlet-name>
+        <servlet-class>com.cube.servlet.CompetitionServlet</servlet-class>
+    </servlet>
 </web-app>
