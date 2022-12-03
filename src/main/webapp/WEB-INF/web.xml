@@ -19,4 +19,12 @@
         <servlet-name>registerServlet</servlet-name>
         <servlet-class>com.cube.servlet.RegisterServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>projectServlet</servlet-name>
+        <url-pattern>/projectServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>projectServlet</servlet-name>
+        <servlet-class>com.cube.servlet.ProjectServlet</servlet-class>
+    </servlet>
 </web-app>
