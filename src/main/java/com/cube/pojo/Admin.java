@@ -6,6 +6,15 @@ public class Admin {
     private String account;
     private String password;
 
+    public Admin() {
+    }
+
+    public Admin(String name, String account, String password) {
+        this.name = name;
+        this.account = account;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
@@ -36,5 +45,15 @@ public class Admin {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

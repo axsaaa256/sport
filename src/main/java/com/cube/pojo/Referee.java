@@ -1,11 +1,23 @@
 package com.cube.pojo;
 
-public class Refee {
+public class Referee {
     private int id;
     private String name;
     private String account;
     private String password;
     private Project project;
+
+    public Referee() {
+    }
+
+    public Referee(String name, String account, String password) {
+        this.name = name;
+        this.account = account;
+        this.password = password;
+    }
+
+
+
     public int getId() {
         return id;
     }
@@ -44,5 +56,16 @@ public class Refee {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    @Override
+    public String toString() {
+        return "Refee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", project=" + project +
+                '}';
     }
 }

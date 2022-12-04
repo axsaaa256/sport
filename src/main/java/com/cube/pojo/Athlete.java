@@ -8,6 +8,16 @@ public class Athlete {
     private String account;
     private String password;
     private List<Competition> competitions;
+
+    public Athlete() {
+    }
+
+    public Athlete(String name, String account, String password) {
+        this.name = name;
+        this.account = account;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
@@ -46,5 +56,16 @@ public class Athlete {
 
     public void setCompetitions(List<Competition> competitions) {
         this.competitions = competitions;
+    }
+
+    @Override
+    public String toString() {
+        return "Athlete{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", competitions=" + competitions +
+                '}';
     }
 }

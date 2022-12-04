@@ -4,14 +4,29 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class Project {
+
+    private int id;
     private String name;
     private String detail;
     private Timestamp startTime;
     private Timestamp endTime;
 
+    private String postion;
+
     private List<Competition> competitions;
     private List<Volunteer> volunteers;
-    private List<Refee> refees;
+    private List<Referee> referees;
+
+    public Project() {
+    }
+
+    public Project(String name, String detail, Timestamp startTime, Timestamp endTime, String postion) {
+        this.name = name;
+        this.detail = detail;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.postion = postion;
+    }
 
     public String getName() {
         return name;
@@ -61,11 +76,50 @@ public class Project {
         this.volunteers = volunteers;
     }
 
-    public List<Refee> getRefees() {
-        return refees;
+    public List<Referee> getRefees() {
+        return referees;
     }
 
-    public void setRefees(List<Refee> refees) {
-        this.refees = refees;
+    public void setRefees(List<Referee> referees) {
+        this.referees = referees;
+    }
+
+    public String getPostion() {
+        return postion;
+    }
+
+    public void setPostion(String postion) {
+        this.postion = postion;
+    }
+
+    public List<Referee> getReferees() {
+        return referees;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setReferees(List<Referee> referees) {
+        this.referees = referees;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", detail='" + detail + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", postion='" + postion + '\'' +
+                ", competitions=" + competitions +
+                ", volunteers=" + volunteers +
+                ", referees=" + referees +
+                '}';
     }
 }

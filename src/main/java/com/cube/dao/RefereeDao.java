@@ -1,16 +1,18 @@
 package com.cube.dao;
 
-import com.cube.pojo.Admin;
+import com.cube.pojo.Project;
+import com.cube.pojo.Referee;
 import com.cube.util.DBUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminDao {
-    public void add(Admin bean) {
+public class RefereeDao {
 
-        String sql = "insert into admin values(null,? ,? ,?)";
+    public void add(Referee bean) {
+
+        String sql = "insert into referee values(null,? ,? ,?,null)";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setString(2,bean.getAccount());
             ps.setString(1, bean.getName());
@@ -23,10 +25,25 @@ public class AdminDao {
             e.printStackTrace();
         }
     }
+    public void add(Referee bean,Project project) {
 
-    public void update(Admin bean) {
+        String sql = "insert into referee values(null,? ,? ,?,?)";
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setString(2,bean.getAccount());
+            ps.setString(1, bean.getName());
+            ps.setString(3, bean.getPassword());
+            ps.setInt(4,project.getId());
+            ps.execute();
 
-        String sql = "update admin set account= ? , password = ? where id = ? ";
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    public void update(Referee bean) {
+
+        String sql = "update referee set account= ? , password = ? where id = ? ";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
             ps.setString(1, bean.getAccount());
@@ -41,12 +58,27 @@ public class AdminDao {
         }
 
     }
+    public void update(Referee bean,Project project) {
 
+        String sql = "update referee set project_id=? where id = ? ";
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+
+            ps.setInt(1,project.getId());
+            ps.setInt(2, bean.getId());
+
+            ps.execute();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+    }
     public void delete(int id) {
 
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
 
-            String sql = "delete from admin where id = " + id;
+            String sql = "delete from referee where id = " + id;
 
             s.execute(sql);
 
@@ -56,15 +88,14 @@ public class AdminDao {
         }
     }
 
-
-    public List<Admin> list() {
+    public List<Referee> list() {
         return list(0, Short.MAX_VALUE);
     }
 
-    public List<Admin> list(int start, int count) {
-        List<Admin> beans = new ArrayList<Admin>();
+    public List<Referee> list(int start, int count) {
+        List<Referee> beans = new ArrayList<Referee>();
 
-        String sql = "select * from admin order by id desc limit ?,? ";
+        String sql = "select * from referee order by id desc limit ?,? ";
 
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
@@ -74,7 +105,7 @@ public class AdminDao {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Admin bean = new Admin();
+                Referee bean = new Referee();
                 int id = rs.getInt(1);
                 String account=rs.getString("account");
                 bean.setAccount(account);
@@ -82,7 +113,9 @@ public class AdminDao {
                 bean.setName(name);
                 String password = rs.getString("password");
                 bean.setPassword(password);
-
+                int pid=rs.getInt("project_id");
+                Project project = new ProjectDao().get(pid);
+                bean.setProject(project);
                 bean.setId(id);
                 beans.add(bean);
             }
@@ -92,18 +125,17 @@ public class AdminDao {
         }
         return beans;
     }
-
-    public Admin get(int id) {
-        Admin bean = null;
+    public Referee get(int id) {
+        Referee bean = null;
 
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
 
-            String sql = "select * from admin where id = " + id;
+            String sql = "select * from referee where id = " + id;
 
             ResultSet rs = s.executeQuery(sql);
 
             if (rs.next()) {
-                bean = new Admin();
+                bean = new Referee();
                 String name = rs.getString("name");
                 bean.setName(name);
                 String password = rs.getString("password");
@@ -111,6 +143,9 @@ public class AdminDao {
                 String account=rs.getString("account");
                 bean.setAccount(account);
                 bean.setId(id);
+                int pid=rs.getInt("project_id");
+                Project project = new ProjectDao().get(pid);
+                bean.setProject(project);
             }
 
         } catch (SQLException e) {
@@ -119,22 +154,25 @@ public class AdminDao {
         }
         return bean;
     }
-    public Admin get(String account, String password) {
-        Admin bean = null;
-        String sql = "select * from admin where account = ? and password=?";
+    public Referee get(String account, String password) {
+        Referee bean = null;
+        String sql = "select * from referee where account = ? and password=?";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setString(1, account);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                bean = new Admin();
+                bean = new Referee();
                 String name=rs.getString("name");
                 int id = rs.getInt("id");
                 bean.setAccount(account);
                 bean.setPassword(password);
                 bean.setName(name);
                 bean.setId(id);
+                int pid=rs.getInt("project_id");
+                Project project = new ProjectDao().get(pid);
+                bean.setProject(project);
             }
 
         } catch (SQLException e) {
