@@ -18,10 +18,8 @@
 </head>
 <body>
 <nav class="nav nav-pills flex-column flex-sm-row">
-    <a class="flex-sm-fill text-sm-center nav-link "  href="shopService">选餐</a>
-    <a class="flex-sm-fill text-sm-center nav-link " href="orderService?method=detect">查看订单</a>
-    <a class="flex-sm-fill text-sm-center nav-link active" href="cardService">购物车</a>
-    <a class="flex-sm-fill text-sm-center nav-link  " href="user.jsp">个人信息</a>
+    <a class="flex-sm-fill text-sm-center nav-link active"  href="shopService" >设置服务</a>
+    <a class="flex-sm-fill text-sm-center nav-link " href="signVolunteer.jsp">添加服务</a>
 </nav>
 <div class="container">
     <div class="card">
@@ -53,7 +51,7 @@
                     <td><%=project.getProject().getName()%></td>
                     <td><%=project.getProject().getDetail()%></td>
                     <td><%=project.getAthlete().getName()%></td>
-                    <form action="volunteerServlet?method=add&pid=<%=project.getProject().getId()%>">
+                    <form action="volunteerServlet?method=add&pid=<%=project.getProject().getId()%>" method="post">
                         <td><input type="submit" value="添加服务"></td>
                     </form>
                 </tr>

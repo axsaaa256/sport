@@ -14,7 +14,7 @@ import java.io.IOException;
 public class VolunteerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        this.doPost(req,resp);
     }
 
     @Override
@@ -39,6 +39,7 @@ public class VolunteerServlet extends HttpServlet {
             Project project = new ProjectDao().get(pid);
             String server=req.getParameter("server");
             Volunteer volunteer =(Volunteer) req.getSession().getAttribute("volunteer");
+            volunteer.setServer(server);
             new VolunteerDao().update(volunteer);
         }
     }

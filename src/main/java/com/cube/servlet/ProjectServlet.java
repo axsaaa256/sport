@@ -50,6 +50,8 @@ public class ProjectServlet extends HttpServlet {
                 String id=req.getParameter("id");
                 int pid=Integer.valueOf(id);
                 deleteProject(pid);
+                updateProject(req);
+                req.getRequestDispatcher("sport.jsp").forward(req,resp);
             }
             else if(method.equals("update"))
             {
@@ -65,10 +67,12 @@ public class ProjectServlet extends HttpServlet {
                 project.setName(name);
                 project.setDetail(detail);
                 project.setPostion(position);
-                project.setStartTime(Timestamp.valueOf(startTime.replace("T"," ")));
-                project.setEndTime(Timestamp.valueOf(endTime.replace("T"," ")));
+                project.setStartTime(Timestamp.valueOf(startTime.replace("T"," ")+":00"));
+                project.setEndTime(Timestamp.valueOf(endTime.replace("T"," ")+":00"));
                 ProjectDao projectDao = new ProjectDao();
                 projectDao.update(project);
+                updateProject(req);
+                req.getRequestDispatcher("sport.jsp").forward(req,resp);
             }
             else if(method.equals("add"))
             {
@@ -81,15 +85,30 @@ public class ProjectServlet extends HttpServlet {
                 project.setName(name);
                 project.setDetail(detail);
                 project.setPostion(position);
-                project.setStartTime(Timestamp.valueOf(startTime.replace("T"," ")));
-                project.setEndTime(Timestamp.valueOf(endTime.replace("T"," ")));
+                String replace = startTime.replace("T", " ");
+                String s = startTime.replace("T", " ") + ":00";
+                project.setStartTime(Timestamp.valueOf(startTime.replace("T"," ")+":00"));
+                project.setEndTime(Timestamp.valueOf(endTime.replace("T"," ")+":00"));
                 ProjectDao projectDao = new ProjectDao();
                 projectDao.add(project);
+                updateProject(req);
+                req.getRequestDispatcher("sport.jsp").forward(req,resp);
             }
         }
     }
     void deleteProject(int id)
     {
         new ProjectDao().delete(id);
+    }
+    void updateProject(HttpServletRequest request)
+    {
+        List<Project> list = new ProjectDao().list();
+        for (Project cur:list)
+        {
+            CompetitionDao competitionDao = new CompetitionDao();
+            List<Competition> competitions = competitionDao.get(cur);
+            cur.setCompetitions(competitions);
+        }
+        request.getSession().setAttribute("project",list);
     }
 }

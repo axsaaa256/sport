@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: sun
   Date: 2022/12/2
-  Time: 上午8:51
+  Time: 上午8:28
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -50,17 +50,9 @@
 <body>
 <article id="docker">
   <div id="sub_docker">
-    <section style="font-size:25px ;">注册</section>
-    <form action="registerServlet" method="post">
+    <section style="font-size:25px ;">管理员登录</section>
+    <form action="loginServlet?role=admin" method="post">
       <div class="container">
-        <div class="row gy-1">
-          <div class="col-md-12">
-            <label for="name_id" class="form-label">昵称:</label>
-          </div>
-          <div class="col">
-            <input type="text" id="name_id" class="form-control" name="name" placeholder="请输入昵称">
-          </div>
-        </div>
         <div class="row gy-1">
           <div class="col-md-12">
             <label for="account_id" class="form-label">账号:</label>
@@ -71,40 +63,19 @@
         </div>
         <div class="row gy-1">
           <div class="col-md-12">
-            <label for="num1" class="form-label">密码:</label>
+            <label for="password_id" class="form-label">密码:</label>
           </div>
           <div class="col">
-            <input type="password" id="num1" class="form-control" name="password"
+            <input type="password" id="password_id" class="form-control" name="password"
                    placeholder="请输入密码">
           </div>
         </div>
-        <div class="row gy-1">
-          <div class="col-md-12">
-            <label for="num2" class="form-label">确认密码:</label>
-          </div>
+        <br><br>
+        <div class="row g-3">
           <div class="col">
-            <input type="password" id="num2" class="form-control" name="password1"
-                   placeholder="请确认密码">
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-check col-md-4">
-            <input class="form-check-input" type="radio" name="role" value="referee" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
-              裁判员
-            </label>
-          </div>
-          <div class="form-check col-md-4">
-            <input class="form-check-input" type="radio" name="role" value="athlete" id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
-              运动员
-            </label>
-          </div>
-          <div class="form-check col-md-4">
-            <input class="form-check-input" type="radio" name="role" value="volunteer" id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
-              志愿者
-            </label>
+            <div class="form-text">
+              <span>${requestScope.error_info}</span>
+            </div>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -120,23 +91,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
-
-<script>
-  function check()
-  {
-    var pwd1 = document.getElementById("num1").value;
-    var pwd2 = document.getElementById("num2").value;
-    <!-- 对比两次输入的密码 -->
-    if(pwd1 == pwd2) {
-      alert("两次密码相同");
-      document.getElementById("submit").disabled = false;
-    }
-    else {
-      alert("两次密码不相同")
-      document.getElementById("submit").disabled = true;
-    }
-  }
-</script>
 </body>
 
 </html>

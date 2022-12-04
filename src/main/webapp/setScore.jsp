@@ -18,10 +18,9 @@
 </head>
 <body>
 <nav class="nav nav-pills flex-column flex-sm-row">
-    <a class="flex-sm-fill text-sm-center nav-link "  href="shopService">选餐</a>
-    <a class="flex-sm-fill text-sm-center nav-link " href="orderService?method=detect">查看订单</a>
-    <a class="flex-sm-fill text-sm-center nav-link active" href="cardService">购物车</a>
-    <a class="flex-sm-fill text-sm-center nav-link  " href="user.jsp">个人信息</a>
+    <a class="flex-sm-fill text-sm-center nav-link active"  href="setScore.jsp">打分</a>
+    <a class="flex-sm-fill text-sm-center nav-link " href="listOfCompetition.jsp">查看信息</a>
+    <a class="flex-sm-fill text-sm-center nav-link " href="signReferee.jsp">成为裁判</a>
 </nav>
 <div class="container">
     <div class="card">
@@ -40,7 +39,7 @@
                     <th scope="col">名称</th>
                     <th scope="col">详细信息</th>
                     <th scope="col">运动员</th>
-                    <th scope="col">参加</th>
+                    <th scope="col">打分</th>
                     <th scope="col">提交</th>
                 </tr>
                 </thead>
@@ -54,7 +53,7 @@
                     <td><%=project.getProject().getName()%></td>
                     <td><%=project.getProject().getDetail()%></td>
                     <td><%=project.getAthlete().getName()%></td>
-                    <form action="refereeServlet?method=setScore&pid=<%=project.getProject().getId()%>&aid=<%=project.getAthlete().getId()%>">
+                    <form action="refereeServlet?method=setScore&pid=<%=project.getProject().getId()%>&aid=<%=project.getAthlete().getId()%>" method="post">
                     <td><input type="text" style="width: 200px;"  name="score"></td>
                     <td><input type="submit" value="提交"></td>
                     </form>

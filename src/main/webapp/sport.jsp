@@ -18,10 +18,10 @@
 </head>
 <body>
 <nav class="nav nav-pills flex-column flex-sm-row">
-    <a class="flex-sm-fill text-sm-center nav-link "  href="shopService">选餐</a>
-    <a class="flex-sm-fill text-sm-center nav-link " href="orderService?method=detect">查看订单</a>
-    <a class="flex-sm-fill text-sm-center nav-link active" href="cardService">购物车</a>
-    <a class="flex-sm-fill text-sm-center nav-link  " href="user.jsp">个人信息</a>
+    <a class="flex-sm-fill text-sm-center nav-link "  href="list.jsp">总览</a>
+    <a class="flex-sm-fill text-sm-center nav-link " href="projectManage.jsp">管理项目</a>
+    <a class="flex-sm-fill text-sm-center nav-link " href="addProject.jsp">添加项目</a>
+    <a class="flex-sm-fill text-sm-center nav-link " href="competitionServlet?method=list">公布成绩</a>
 </nav>
 <div class="container">
     <div class="card">

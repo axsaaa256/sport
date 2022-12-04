@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginServlet extends HttpServlet {
@@ -42,18 +43,25 @@ public class LoginServlet extends HttpServlet {
         switch (role)
         {
             case "volunteer":
+                listCompetition(req);
+                req.getRequestDispatcher("setServer.jsp").forward(req,resp);
                 break;
             case "referee":
+                listCompetition(req);
+                req.getRequestDispatcher("setScore.jsp").forward(req,resp);
                 break;
             case "athlete":
+                req.getRequestDispatcher("competitionServlet?method=list").forward(req,resp);
+                break;
+            case "admin":
+                req.getRequestDispatcher("sport.jsp").forward(req,resp);
                 break;
         }
         System.out.println(session.getAttribute("project"));
-        req.getRequestDispatcher("list.jsp").forward(req,resp);
     }
     public boolean check(String account,String password,String role)
     {
-        if(role.equals("refee"))
+        if(role.equals("referee"))
         {
             RefereeDao refereeDao = new RefereeDao();
             Referee referee = refereeDao.get(account, password);
@@ -83,8 +91,21 @@ public class LoginServlet extends HttpServlet {
             }
             session.setAttribute("athlete",athlete);
         }
+        else if(role.equals("admin"))
+        {
+            Admin admin = new AdminDao().get(account, password);
+            if(admin==null)
+            {
+                return false;
+            }
+        }
         else
             return false;
         return true;
+    }
+    public static void listCompetition(HttpServletRequest req)
+    {
+        List<Competition> list = new CompetitionDao().list();
+        req.getSession().setAttribute("competitions",list);
     }
 }

@@ -51,7 +51,7 @@ public class ProjectDao {
 
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
 
-            String sql = "delete from project where id = " + id;
+            String sql = "delete from project where id =" + id;
 
             s.execute(sql);
 

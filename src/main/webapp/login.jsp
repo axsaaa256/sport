@@ -50,7 +50,7 @@
 <body>
 <article id="docker">
     <div id="sub_docker">
-        <section style="font-size:25px ;">注册用户</section>
+        <section style="font-size:25px ;">登录用户</section>
         <form action="loginServlet" method="post">
             <div class="container">
                 <div class="row gy-1">

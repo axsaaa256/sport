@@ -23,7 +23,7 @@ public class baseFilter implements Filter {
         String uri = ((HttpServletRequest) request).getRequestURI(); //获得访问URI
         uri = StringUtils.remove(uri, contextPath); //截取URI访问路径部分，如 admin_category_list
         if (uri.startsWith("/admin_")) {
-            String servletPath = StringUtils.substringAfterLast(uri, "_") + "Servlet"; // list
+            String servletPath ="admin"+ StringUtils.substringAfterLast(uri, "_") + ".jsp"; // list
             request.getRequestDispatcher("/" + servletPath).forward(request, response); // 服务端跳转，算同一次请求，数据可以放 request 里传递
             return;
         }

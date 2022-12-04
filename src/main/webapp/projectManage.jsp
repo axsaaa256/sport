@@ -17,12 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
-<nav class="nav nav-pills flex-column flex-sm-row">
-    <a class="flex-sm-fill text-sm-center nav-link "  href="shopService">选餐</a>
-    <a class="flex-sm-fill text-sm-center nav-link " href="orderService?method=detect">查看订单</a>
-    <a class="flex-sm-fill text-sm-center nav-link active" href="cardService">购物车</a>
-    <a class="flex-sm-fill text-sm-center nav-link  " href="user.jsp">个人信息</a>
-</nav>
+
 <div class="container">
     <div class="card">
         <h5 class="card-header">

@@ -28,14 +28,6 @@
         <servlet-class>com.cube.servlet.ProjectServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>athleteServlet</servlet-name>
-        <url-pattern>/athleteServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>athleteServlet</servlet-name>
-        <servlet-class>com.cube.servlet.AthleteServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
         <servlet-name>competitionServlet</servlet-name>
         <url-pattern>/competitionServlet</url-pattern>
     </servlet-mapping>
@@ -43,4 +35,45 @@
         <servlet-name>competitionServlet</servlet-name>
         <servlet-class>com.cube.servlet.CompetitionServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>volunteerServlet</servlet-name>
+        <url-pattern>/volunteerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>volunteerServlet</servlet-name>
+        <servlet-class>com.cube.servlet.VolunteerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>refereeServlet</servlet-name>
+        <url-pattern>/refereeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>refereeServlet</servlet-name>
+        <servlet-class>com.cube.servlet.RefereeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listServlet</servlet-name>
+        <url-pattern>/listServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>listServlet</servlet-name>
+        <servlet-class>com.cube.servlet.ListServlet</servlet-class>
+    </servlet>
+    <filter>
+        <filter-name>filter</filter-name>
+        <filter-class>com.cube.filter.baseFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>com.cube.filter.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>

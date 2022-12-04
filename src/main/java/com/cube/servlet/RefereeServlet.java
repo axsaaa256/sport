@@ -14,7 +14,7 @@ import java.io.IOException;
 public class RefereeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        this.doPost(req,resp);
     }
 
     @Override
@@ -22,16 +22,18 @@ public class RefereeServlet extends HttpServlet {
         Referee referee= (Referee)req.getSession().getAttribute("referee");
         Project project = referee.getProject();
         String method = req.getParameter("method");
+        int pid=Integer.parseInt(req.getParameter("pid"));
         if(method.equals("setScore"))
         {
-            int pid=Integer.parseInt(req.getParameter("pid"));
+            pid=Integer.parseInt(req.getParameter("pid"));
             int aid=Integer.parseInt(req.getParameter("aid"));
             int score=Integer.parseInt(req.getParameter("score"));
             new CompetitionDao().updateScore(new AthleteDao().get(aid),new ProjectDao().get(pid),score);
+            req.getRequestDispatcher("listOfCompetition.jsp").forward(req,resp);
         }
         else if(method.equals("add"))
         {
-            int pid=Integer.parseInt(req.getParameter("pid"));
+            pid=Integer.parseInt(req.getParameter("pid"));
             new RefereeDao().add(referee,new ProjectDao().get(pid));
         }
         else if(method.equals("break"))

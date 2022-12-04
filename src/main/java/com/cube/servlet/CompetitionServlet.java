@@ -32,6 +32,8 @@ public class CompetitionServlet extends HttpServlet {
             Athlete athlete=(Athlete)req.getSession().getAttribute("athlete");
             CompetitionDao competitionDao = new CompetitionDao();
             competitionDao.add(athlete,project,0);
+            breakCompetition(req);
+            req.getRequestDispatcher("listOfCompetition.jsp").forward(req,resp);
         }
         else if(method.equals("list"))
         {
@@ -42,8 +44,12 @@ public class CompetitionServlet extends HttpServlet {
             List<Project> partedProject=new ArrayList<>();
             for(Competition competition:competitions)
             {
+                partedProject.add(competition.getProject());
+            }
+            for(Project cur:project)
+            {
                 boolean flag=true;
-                for(Project cur:project)
+                for(Competition competition:competitions)
                 {
                     if(competition.getProject().getId()==cur.getId())
                     {
@@ -52,13 +58,13 @@ public class CompetitionServlet extends HttpServlet {
                 }
                 if(flag)
                 {
-                    availProject.add(competition.getProject());
+                    availProject.add(cur);
                 }
             }
             req.getSession().setAttribute("competitions",competitions);
             req.getSession().setAttribute("availProject",availProject);
             req.getSession().setAttribute("partedProject",partedProject);
-            req.getRequestDispatcher("listOfCompetitionAdd.jsp").forward(req,resp);
+            req.getRequestDispatcher("listOfCompetition.jsp").forward(req,resp);
         }
         else if (method.equals("delete")) {
             String id = req.getParameter("pid");
@@ -68,7 +74,8 @@ public class CompetitionServlet extends HttpServlet {
             Athlete athlete=(Athlete)req.getSession().getAttribute("athlete");
             CompetitionDao competitionDao = new CompetitionDao();
             competitionDao.delete(project);
-
+            breakCompetition(req);
+            req.getRequestDispatcher("listOfCompetition.jsp").forward(req,resp);
         }
         else if(method.equals("setScore")){
             String id = req.getParameter("pid");
@@ -79,6 +86,37 @@ public class CompetitionServlet extends HttpServlet {
             Athlete athlete=(Athlete)req.getSession().getAttribute("athlete");
             CompetitionDao competitionDao = new CompetitionDao();
             competitionDao.updateScore(athlete,project,score);
+            req.getRequestDispatcher("listOfCompetition.jsp").forward(req,resp);
         }
+    }
+    public static void  breakCompetition(HttpServletRequest req)
+    {
+        Athlete athlete=(Athlete)req.getSession().getAttribute("athlete");
+        List<Competition> competitions = new CompetitionDao().get(athlete);
+        List<Project> project =(List<Project> ) req.getSession().getAttribute("project");
+        List<Project> availProject=new ArrayList<>();
+        List<Project> partedProject=new ArrayList<>();
+        for(Competition competition:competitions)
+        {
+            partedProject.add(competition.getProject());
+        }
+        for(Project cur:project)
+        {
+            boolean flag=true;
+            for(Competition competition:competitions)
+            {
+                if(competition.getProject().getId()==cur.getId())
+                {
+                    flag=false;
+                }
+            }
+            if(flag)
+            {
+                availProject.add(cur);
+            }
+        }
+        req.getSession().setAttribute("competitions",competitions);
+        req.getSession().setAttribute("availProject",availProject);
+        req.getSession().setAttribute("partedProject",partedProject);
     }
 }

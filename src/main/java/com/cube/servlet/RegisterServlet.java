@@ -26,6 +26,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         session = req.getSession();
+        req.setCharacterEncoding("utf-8");
         String account=req.getParameter("account");
         String password=req.getParameter("password");
         String role=req.getParameter("role");

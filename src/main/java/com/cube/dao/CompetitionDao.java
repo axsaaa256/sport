@@ -28,7 +28,7 @@ public class CompetitionDao {
     {
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
 
-            String sql = "delete from competition where id = " + athlete.getId();
+            String sql = "delete from competition where athlete_id = " + athlete.getId();
 
             s.execute(sql);
 
@@ -41,7 +41,21 @@ public class CompetitionDao {
     {
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
 
-            String sql = "delete from competition where id = " + project.getId();
+            String sql = "delete from competition where project_id = " + project.getId();
+
+            s.execute(sql);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+    public void delete(Project project,Athlete athlete)
+    {
+        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
+
+            String sql = "delete from competition where project_id = " + project.getId();
+            sql+=" and athlete_id ="+athlete.getId();
 
             s.execute(sql);
 
@@ -73,7 +87,7 @@ public class CompetitionDao {
     {
         List<Competition> beans = new ArrayList<Competition>();
 
-        String sql = "select * from competition order by id desc limit ?,? ";
+        String sql = "select * from competition order by project_id desc limit ?,? ";
 
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
@@ -107,7 +121,7 @@ public class CompetitionDao {
 
             ResultSet rs = s.executeQuery(sql);
 
-            if (rs.next()) {
+            while (rs.next()) {
                 Competition bean=new Competition();
                 int aid=rs.getInt(1);
                 int pid=rs.getInt(2);
@@ -116,6 +130,7 @@ public class CompetitionDao {
                 bean.setProject(new ProjectDao().get(pid));
                 bean.setScore(score);
                 beans.add(bean);
+
             }
 
         } catch (SQLException e) {
@@ -133,7 +148,7 @@ public class CompetitionDao {
 
             ResultSet rs = s.executeQuery(sql);
 
-            if (rs.next()) {
+            while (rs.next()) {
                 Competition bean=new Competition();
                 int aid=rs.getInt(1);
                 int pid=rs.getInt(2);
